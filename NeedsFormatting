@@ -1,0 +1,50 @@
+def get_names():
+  guesses = []
+  #guess = ""
+  #count = 0
+  go = True
+  while go:
+  guess = input("Enter the name of an element: ")
+  guess = guess.lower()
+  #print(guesses[count])
+  if len(guess)>0 and guess not in guesses:             
+  guesses.append(guess)             
+  #count += 1         
+  elif guess in guesses:             
+  print(guess, "was already entered")         
+  else:             
+  print('Please try again')                               
+  if len(guesses) == 5:             
+  return guesses             
+  go = False  print("List any 5 of the first 20 elements in the Periodic Table") print()   
+  file = open("elements1_20.txt")  
+  elem = file.readline() 
+  elem = elem.strip()  
+  e_list = []  while elem:     
+  e_list.append(elem)     
+  elem = file.readline()     
+  elem = elem.strip()   
+  userGuesses = get_names() 
+  correct = [] 
+  incorrect = []   
+  for l in range(20):   
+  e_list[l] = e_list[l].lower()  
+  for x in range(19):   
+  try:     
+  if userGuesses[0] in e_list:       
+  correct.append(userGuesses[0])       
+  userGuesses.remove(userGuesses[0])     
+  else:       
+  incorrect.append(userGuesses[0])       
+  userGuesses.remove(userGuesses[0])   
+  except:     
+  pass  
+  percent = int((len(correct) / (len(correct) + len(incorrect))) * 100)  
+  print() print(percent, "% correct")  
+  print("Not Found: ", end='') 
+  for a in range(len(incorrect)):   
+  print(incorrect[a], end =' ') 
+  print()  
+  print("Found: ", end='') 
+  for b in range(len(correct)):   
+  print(correct[b], end =' ')
